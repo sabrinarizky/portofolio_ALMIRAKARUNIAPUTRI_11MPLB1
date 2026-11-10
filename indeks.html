@@ -1,0 +1,879 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Almira Karunia Putri</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        rainbow: {
+                            pink: '#FF9AA2',
+                            peach: '#FFB7B2',
+                            yellow: '#FFDAC1',
+                            green: '#E2F0CB',
+                            blue: '#B5EAD7',
+                            purple: '#C7CEEA'
+                        }
+                    },
+                    keyframes: {
+                        pulseHeart: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.25)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        gradientShift: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    },
+                    animation: {
+                        heartbeat: 'pulseHeart 1.2s infinite ease-in-out',
+                        float: 'float 4s ease-in-out infinite',
+                        gradient: 'gradientShift 8s ease infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .rainbow-bg {
+            background: linear-[#8ee3f5]linear-gradient(-45deg, #ff9aa2, #ffdac1, #e2f0cb, #b5ead7, #c7ceea);
+            background-size: 300% 300%;
+        }
+        .rainbow-text {
+            background: linear-gradient(90deg, #ff6b6b, #fca5a5, #facc15, #4ade80, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .rainbow-border {
+            border-image: linear-gradient(to right, #ff9aa2, #ffdac1, #e2f0cb, #b5ead7, #c7ceea) 1;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden">
+
+    <!-- TOP NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3">
+            <div class="glass-card rounded-2xl shadow-lg px-4 py-3 flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl rainbow-bg flex items-center justify-center font-display font-bold text-white text-xl shadow-md group-hover:rotate-12 transition-transform">
+                        A
+                    </div>
+                    <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-slate-800">
+                        Almira<span class="rainbow-text">.kp</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-xl text-sm font-semibold">
+                    <a href="#hero" class="px-4 py-2 rounded-lg text-slate-600 hover:text-pink-600 hover:bg-white transition-all">Beranda</a>
+                    <a href="#about" class="px-4 py-2 rounded-lg text-slate-600 hover:text-amber-600 hover:bg-white transition-all">Tentang</a>
+                    <a href="#skills" class="px-4 py-2 rounded-lg text-slate-600 hover:text-emerald-600 hover:bg-white transition-all">Keahlian</a>
+                    <a href="#projects" class="px-4 py-2 rounded-lg text-slate-600 hover:text-sky-600 hover:bg-white transition-all">Project</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg text-slate-600 hover:text-purple-600 hover:bg-white transition-all">Kontak</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:block">
+                    <a href="#contact" class="rainbow-bg text-slate-900 font-bold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 text-sm flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-pink-600"></i>
+                        <span>Hubungi Saya</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition">
+                    <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Dropdown -->
+            <div id="mobileMenu" class="hidden md:hidden mt-2 glass-card rounded-2xl p-4 shadow-xl flex flex-col gap-2 font-medium">
+                <a href="#hero" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-pink-50 hover:text-pink-600 transition">Beranda</a>
+                <a href="#about" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-600 transition">Tentang</a>
+                <a href="#skills" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 transition">Keahlian</a>
+                <a href="#projects" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-sky-50 hover:text-sky-600 transition">Project</a>
+                <a href="#contact" class="mobile-link px-4 py-2.5 rounded-xl hover:bg-purple-50 hover:text-purple-600 transition">Kontak</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <!-- Floating Rainbow Elements BG -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-pink-300/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-blue-300/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-200/30 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Content Left -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 shadow-sm border border-pink-200 text-pink-600 font-semibold text-xs sm:text-sm mb-6 animate-bounce">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        Siswa MPLB @ SMK Cyber Media
+                    </div>
+                    
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                        Halo! Saya <br class="hidden sm:inline" />
+                        <span class="rainbow-text">Almira Karunia Putri</span> 🌸
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8 font-medium">
+                        Halo, selamat datang di website portofolio saya! Website ini dibuat untuk saya menaruh seluruh project yang saya buat selama menempuh pendidikan di bidang Manajemen Perkantoran dan Layanan Bisnis.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 text-white font-bold hover:bg-slate-800 hover:shadow-xl hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2">
+                            <span>Lihat Project Saya</span>
+                            <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-slate-800 font-bold hover:bg-white hover:shadow-lg transition-all text-center border border-slate-200 flex items-center justify-center gap-2">
+                            <span>Hubungi Langsung</span>
+                            <i data-lucide="send" class="w-4 h-4 text-pink-500"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats Badges -->
+                    <div class="mt-10 pt-8 border-t border-slate-200/60 grid grid-cols-3 gap-4">
+                        <div class="p-3 rounded-xl bg-white/60 text-center border border-slate-100">
+                            <span class="block font-display font-bold text-2xl text-pink-500">100%</span>
+                            <span class="text-xs text-slate-500 font-medium">Semangat</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/60 text-center border border-slate-100">
+                            <span class="block font-display font-bold text-2xl text-emerald-500">MPLB</span>
+                            <span class="text-xs text-slate-500 font-medium">Jurusan Utama</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/60 text-center border border-slate-100">
+                            <span class="block font-display font-bold text-2xl text-purple-500">Cepat</span>
+                            <span class="text-xs text-slate-500 font-medium">Ketik 10 Jari</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Avatar Right -->
+                <div class="lg:col-span-5 flex justify-center relative">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+                        <!-- Rainbow Ring Background Animation -->
+                        <div class="absolute inset-0 rainbow-bg rounded-full animate-spin-slow opacity-80 blur-md"></div>
+                        <div class="absolute inset-2 bg-white rounded-full"></div>
+                        
+                        <!-- Avatar Container -->
+                        <div class="absolute inset-4 rounded-full overflow-hidden border-4 border-white shadow-2xl flex items-center justify-center bg-gradient-to-tr from-pink-100 via-amber-100 to-sky-100 animate-float">
+                            <!-- High Quality SVG Illustration Avatar -->
+                            <svg viewBox="0 0 200 200" class="w-full h-full object-cover">
+                                <rect width="200" height="200" fill="#FFE5EC" />
+                                <!-- Rainbow Accents -->
+                                <circle cx="40" cy="30" r="15" fill="#FFB7B2" opacity="0.6"/>
+                                <circle cx="170" cy="50" r="25" fill="#B5EAD7" opacity="0.6"/>
+                                <circle cx="160" cy="160" r="20" fill="#E2F0CB" opacity="0.6"/>
+                                
+                                <!-- Body / Blazer -->
+                                <path d="M 40 200 C 40 145 60 130 100 130 C 140 130 160 145 160 200 Z" fill="#334155" />
+                                <path d="M 75 135 L 100 170 L 125 135 Z" fill="#F8FAFC" />
+                                <path d="M 85 130 L 100 160 L 115 130 Z" fill="#EC4899" />
+                                
+                                <!-- Head & Face -->
+                                <ellipse cx="100" cy="95" rx="36" ry="42" fill="#FCE7F3" />
+                                <ellipse cx="100" cy="98" rx="32" ry="38" fill="#FDE047" opacity="0.1" />
+                                
+                                <!-- Hair Back -->
+                                <path d="M 60 90 C 55 45 145 45 140 90 C 145 130 140 150 140 150 C 130 140 120 135 100 135 C 80 135 70 140 60 150 C 60 150 55 130 60 90 Z" fill="#1E293B" />
+                                
+                                <!-- Eyes -->
+                                <ellipse cx="88" cy="95" rx="4" ry="6" fill="#0F172A" />
+                                <ellipse cx="112" cy="95" rx="4" ry="6" fill="#0F172A" />
+                                <circle cx="89" cy="93" r="1.5" fill="#FFFFFF" />
+                                <circle cx="113" cy="93" r="1.5" fill="#FFFFFF" />
+                                
+                                <!-- Cheeks -->
+                                <ellipse cx="80" cy="104" rx="6" ry="4" fill="#F43F5E" opacity="0.4" />
+                                <ellipse cx="120" cy="104" rx="6" ry="4" fill="#F43F5E" opacity="0.4" />
+                                
+                                <!-- Smile -->
+                                <path d="M 92 108 Q 100 115 108 108" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                
+                                <!-- Hair Front / Bangs -->
+                                <path d="M 64 85 C 70 65 95 65 100 75 C 105 65 130 65 136 85 C 120 75 110 75 100 82 C 90 75 80 75 64 85 Z" fill="#1E293B" />
+                                
+                                <!-- Cute Glasses -->
+                                <circle cx="86" cy="95" r="12" stroke="#EC4899" stroke-width="2.5" fill="none" />
+                                <circle cx="114" cy="95" r="12" stroke="#EC4899" stroke-width="2.5" fill="none" />
+                                <line x1="98" y1="95" x2="102" y2="95" stroke="#EC4899" stroke-width="2.5" />
+                            </svg>
+                        </div>
+
+                        <!-- Floating Badges -->
+                        <div class="absolute -bottom-2 -left-2 glass-card px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2 text-xs font-bold text-slate-800">
+                            <span class="text-xl">⌨️</span>
+                            <span>10-Finger Typist</span>
+                        </div>
+                        <div class="absolute top-4 -right-2 glass-card px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2 text-xs font-bold text-slate-800">
+                            <span class="text-xl">📂</span>
+                            <span>Arsip & Bisnis</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT ME SECTION -->
+    <section id="about" class="py-20 relative bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-amber-100 text-amber-700">Mengenal Lebih Dekat</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Tentang Saya 🌟</h2>
+                <div class="w-20 h-1.5 rainbow-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-stretch">
+                <!-- Info Card Left -->
+                <div class="md:col-span-5 rounded-3xl p-8 bg-gradient-to-br from-amber-50 via-pink-50 to-purple-50 border border-slate-100 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-amber-200/40 rounded-full blur-2xl"></div>
+                    
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center text-amber-500 mb-6">
+                            <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold text-slate-900 mb-2">Siswa SMK Cyber Media</h3>
+                        <p class="text-sm font-semibold text-pink-600 mb-6">Jurusan: MPLB (Manajemen Perkantoran & Layanan Bisnis)</p>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Saya adalah siswi yang berdedikasi tinggi di SMK Cyber Media Jakarta. Fokus studi saya mencakup pengelolaan dokumen, korespondensi bisnis, pelayanan prima, serta manajemen kearsipan digital yang modern.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 pt-6 border-t border-slate-200/60 text-xs font-semibold text-slate-700">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle2" class="w-4 h-4 text-emerald-500"></i>
+                            <span>Ketelitian Administrasi Tinggi</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle2" class="w-4 h-4 text-emerald-500"></i>
+                            <span>Efisiensi & Manajemen Waktu Baik</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle2" class="w-4 h-4 text-emerald-500"></i>
+                            <span>Berkomunikasi dengan Ramah & Profesional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillars Right -->
+                <div class="md:col-span-7 grid sm:grid-cols-2 gap-6">
+                    <!-- Pillar 1 -->
+                    <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Manajemen Perkantoran</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Mampu menyusun tata kelola dokumen fisik maupun digital dengan terstruktur, tertata rapi, dan mudah diakses.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="headphones" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Layanan Bisnis</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Memahami standar pelayanan prima (*Excellence Service*), komunikasi pelanggan, serta penanganan administrasi bisnis.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Kecepatan & Ketelitian</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Terbiasa mengolah data kata dan angka dengan cepat tanpa mengesampingkan keakuratan hasil dokumen.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="heart" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Sikap Ceria & Positif</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Selalu membawa energi positif dan semangat kolaboratif dalam setiap tim kerja maupun tugas sekolah.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: SKILLS SECTION -->
+    <section id="skills" class="py-20 relative bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Keahlian Utama</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Skill & Kemampuan 💡</h2>
+                <p class="text-slate-600 text-sm mt-2">Daftar keahlian spesifik yang terus saya latih dan kembangkan</p>
+                <div class="w-20 h-1.5 rainbow-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                
+                <!-- Skill Card Progress Bars -->
+                <div class="space-y-6">
+                    
+                    <!-- Skill 1: Microsoft Word -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                                    W
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Microsoft Word & Pengolahan Dokumen</h4>
+                                    <span class="text-xs text-slate-500">Format surat resmi, mail merge, tabel & laporan</span>
+                                </div>
+                            </div>
+                            <span class="font-display font-bold text-blue-600">95%</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full transition-all duration-1000" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2: Mengetik 10 Jari -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center font-bold">
+                                    <i data-lucide="keyboard" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Mengetik 10 Jari (Blind Typing)</h4>
+                                    <span class="text-xs text-slate-500">Cepat, akurat, dan tanpa melihat kibor</span>
+                                </div>
+                            </div>
+                            <span class="font-display font-bold text-pink-600">90%</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-pink-400 to-rose-500 rounded-full transition-all duration-1000" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 3: Komunikasi Bahasa Indonesia -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                                    🇮🇩
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Komunikasi Bahasa Indonesia</h4>
+                                    <span class="text-xs text-slate-500">Public speaking, tata bahasa resmi, & presentasi</span>
+                                </div>
+                            </div>
+                            <span class="font-display font-bold text-amber-600">95%</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-1000" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 4: Komunikasi Bahasa Inggris -->
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                                    🇬🇧
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900">Komunikasi Bahasa Inggris</h4>
+                                    <span class="text-xs text-slate-500">Percakapan bisnis dasar & korespondensi email</span>
+                                </div>
+                            </div>
+                            <span class="font-display font-bold text-emerald-600">80%</span>
+                        </div>
+                        <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full transition-all duration-1000" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Typing Speed Tester Box (Fun Mini Feature) -->
+                <div class="bg-gradient-to-br from-purple-600 via-pink-600 to-amber-500 p-1 rounded-3xl shadow-xl">
+                    <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-[22px] h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-white/10 text-pink-300 rounded-full text-xs font-bold uppercase tracking-wider">Fitur Interaktif</span>
+                                <span class="text-xs text-slate-400">Tes Ketik 10 Jari</span>
+                            </div>
+                            <h3 class="font-display text-2xl font-bold mb-2">Uji Kecepatan Ketik ⌨️</h3>
+                            <p class="text-slate-300 text-xs mb-6">Coba ketik kalimat perkantoran di bawah ini untuk melihat kecepatan mengetik Anda!</p>
+
+                            <!-- Target Sentence -->
+                            <div class="p-4 bg-slate-800/80 rounded-2xl border border-slate-700 mb-4 text-sm font-mono text-emerald-400 leading-relaxed select-none" id="targetText">
+                                Manajemen Perkantoran dan Layanan Bisnis SMK Cyber Media Jakarta.
+                            </div>
+
+                            <!-- Input Box -->
+                            <textarea id="typingInput" rows="2" placeholder="Ketik ulang kalimat di atas di sini..." class="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-sm focus:outline-none focus:border-pink-500 transition resize-none"></textarea>
+                        </div>
+
+                        <!-- Typing Stats -->
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <div>
+                                <span class="text-slate-400 block">WPM (Kata/Menit)</span>
+                                <span class="font-display text-2xl font-bold text-pink-400" id="wpmDisplay">0</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block">Akurasi</span>
+                                <span class="font-display text-2xl font-bold text-emerald-400" id="accuracyDisplay">100%</span>
+                            </div>
+                            <button id="resetTyping" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 font-bold transition text-xs">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-sky-100 text-sky-700">Hasil Karya</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Project & Portofolio 📁</h2>
+                <p class="text-slate-600 text-sm mt-2">Kumpulan tugas, praktikum, dan project administrasi yang pernah saya kerjakan</p>
+                <div class="w-20 h-1.5 rainbow-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Project Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <button class="filter-btn active px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-900 text-white shadow-md" data-filter="all">Semua Project</button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="arsip">Kearsipan</button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="surat">Korespondensi</button>
+                <button class="filter-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all bg-slate-100 text-slate-600 hover:bg-slate-200" data-filter="keuangan">Keuangan</button>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="project-card group rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="arsip">
+                    <div>
+                        <div class="h-48 rainbow-bg relative flex items-center justify-center p-6 overflow-hidden">
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
+                            <div class="w-16 h-16 rounded-2xl bg-white/90 shadow-lg flex items-center justify-center text-pink-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="folder-archive" class="w-8 h-8"></i>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-bold text-slate-800">Sistem Abjad & Kronologis</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2 group-hover:text-pink-600 transition">Pengelolaan Arsip Digital Perusahaan</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Digitalisasi dokumen fisik, pengodean arsip menggunakan sistem abjad, dan klasifikasi berkas menggunakan Google Drive & Ms. Excel.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-100 mt-4">
+                        <span class="text-xs font-semibold text-slate-400">Ms. Excel & Drive</span>
+                        <button onclick="openProjectModal('Pengelolaan Arsip Digital Perusahaan', 'Project ini mencakup pengelompokan dokumen berdasarkan sistem Wilayah, Subjek, dan Kronologis. Dilengkapi dengan buku agenda surat masuk dan keluar secara rapi.')" class="text-xs font-bold text-pink-600 flex items-center gap-1 hover:underline">
+                            Detail <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card group rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="surat">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-amber-300 via-pink-300 to-sky-300 relative flex items-center justify-center p-6 overflow-hidden">
+                            <div class="w-16 h-16 rounded-2xl bg-white/90 shadow-lg flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="mail-check" class="w-8 h-8"></i>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-bold text-slate-800">Bahasa Indo & Inggris</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2 group-hover:text-amber-600 transition">Penyusunan Surat & Korespondensi Bisnis</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Pembuatan draf surat niaga, surat penawaran harga, surat undangan rapat formal, serta balasan email konfirmasi bisnis.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-100 mt-4">
+                        <span class="text-xs font-semibold text-slate-400">Ms. Word & Email</span>
+                        <button onclick="openProjectModal('Penyusunan Surat & Korespondensi Bisnis', 'Membuat berbagai format surat standar internasional dan nasional dengan tata bahasa formal, penggunaan Mail Merge untuk pengiriman masal, dan pengarsipan salinan.')" class="text-xs font-bold text-amber-600 flex items-center gap-1 hover:underline">
+                            Detail <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="keuangan">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-emerald-300 via-teal-200 to-indigo-300 relative flex items-center justify-center p-6 overflow-hidden">
+                            <div class="w-16 h-16 rounded-2xl bg-white/90 shadow-lg flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="calculator" class="w-8 h-8"></i>
+                            </div>
+                            <span class="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-bold text-slate-800">Petty Cash</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-display font-bold text-xl text-slate-900 mb-2 group-hover:text-emerald-600 transition">Laporan Kas Kecil (Petty Cash)</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                Pencatatan transaksi operasional harian kantor menggunakan metode Imprest System & Fluctuating Fund System.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-slate-100 mt-4">
+                        <span class="text-xs font-semibold text-slate-400">Spreadsheet & Excel</span>
+                        <button onclick="openProjectModal('Laporan Kas Kecil (Petty Cash)', 'Pengelolaan dana kas kecil untuk kebutuhan rutin kantor lengkap dengan verifikasi kuitansi, nota, dan pembuatan grafik rekapitulasi pengeluaran bulanan.')" class="text-xs font-bold text-emerald-600 flex items-center gap-1 hover:underline">
+                            Detail <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT ME SECTION -->
+    <section id="contact" class="py-20 relative bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-purple-100 text-purple-700">Terhubung Dengan Saya</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">Hubungi Saya 📲</h2>
+                <p class="text-slate-600 text-sm mt-2">Mari berdiskusi, berkolaborasi, atau sekadar menyapa!</p>
+                <div class="w-20 h-1.5 rainbow-bg mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Social Media Badges Left -->
+                <div class="lg:col-span-5 space-y-4">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-4">Sosial Media & Kontak</h3>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/almiruuuy" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border border-slate-100 hover:shadow-lg hover:border-pink-300 transition group">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 via-rose-500 to-purple-600 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="instagram" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-xs font-semibold text-slate-400 block">Instagram</span>
+                            <span class="font-bold text-slate-800 text-base group-hover:text-pink-600">@almiruuuy</span>
+                        </div>
+                        <i data-lucide="external-link" class="w-5 h-5 text-slate-300 group-hover:text-pink-500"></i>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/6281215561199" target="_blank" class="flex items-center gap-4 p-5 rounded-3xl bg-white border border-slate-100 hover:shadow-lg hover:border-emerald-300 transition group">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="phone-call" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1">
+                            <span class="text-xs font-semibold text-slate-400 block">WhatsApp / Chat</span>
+                            <span class="font-bold text-slate-800 text-base group-hover:text-emerald-600">081215561199</span>
+                        </div>
+                        <i data-lucide="external-link" class="w-5 h-5 text-slate-300 group-hover:text-emerald-500"></i>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:almirakaruniaputri0@gmail.com" class="flex items-center gap-4 p-5 rounded-3xl bg-white border border-slate-100 hover:shadow-lg hover:border-sky-300 transition group">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                            <span class="text-xs font-semibold text-slate-400 block">Email Resmi</span>
+                            <span class="font-bold text-slate-800 text-sm sm:text-base group-hover:text-sky-600 truncate block">almirakaruniaputri0@gmail.com</span>
+                        </div>
+                        <i data-lucide="external-link" class="w-5 h-5 text-slate-300 group-hover:text-sky-500"></i>
+                    </a>
+                </div>
+
+                <!-- Contact Interactive Form Right -->
+                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-slate-100 shadow-md">
+                    <h3 class="font-display font-bold text-xl text-slate-900 mb-6">Kirim Pesan Langsung 💌</h3>
+                    
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Nama Lengkap</label>
+                            <input type="text" required placeholder="Masukkan nama Anda..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-pink-500 focus:bg-white transition text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Alamat Email / WA</label>
+                            <input type="text" required placeholder="contoh@email.com atau 0812..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-pink-500 focus:bg-white transition text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Pesan Anda</label>
+                            <textarea rows="4" required placeholder="Tuliskan pesan atau penawaran kerja sama Anda di sini..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-pink-500 focus:bg-white transition text-sm resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl rainbow-bg text-slate-900 font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                            <span>Kirim Pesan Sekarang</span>
+                            <i data-lucide="send" class="w-4 h-4 text-pink-600"></i>
+                        </button>
+                    </form>
+
+                    <!-- Alert Success Box (Hidden default) -->
+                    <div id="formSuccess" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>
+                        <span>Terima kasih! Pesan Anda berhasil dikirim secara interaktif.</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 6: FOOTER & NAVIGATION FOLDER -->
+    <footer class="bg-slate-900 text-white pt-16 pb-12 relative overflow-hidden">
+        <!-- Rainbow Subtle Top Accent -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 rainbow-bg"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-12 gap-8 pb-12 border-b border-slate-800">
+                
+                <!-- Footer Brand -->
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 rounded-xl rainbow-bg flex items-center justify-center font-display font-bold text-slate-900 text-xl">
+                            A
+                        </div>
+                        <span class="font-display font-bold text-xl tracking-tight text-white">
+                            Almira Karunia Putri
+                        </span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+                        Portofolio siswa SMK Cyber Media jurusan MPLB. Menghadirkan efisiensi administrasi dengan semangat muda yang ceria.
+                    </p>
+                </div>
+
+                <!-- Footer Menu Folder (Quick Nav) -->
+                <div class="md:col-span-4">
+                    <h4 class="font-display font-bold text-base text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="folder" class="w-4 h-4 text-amber-400"></i>
+                        <span>Folder Menu Navigation</span>
+                    </h4>
+                    <div class="grid grid-cols-2 gap-2 text-sm text-slate-300 font-medium">
+                        <a href="#hero" class="hover:text-pink-400 transition flex items-center gap-1.5">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-500"></i> Beranda
+                        </a>
+                        <a href="#about" class="hover:text-amber-400 transition flex items-center gap-1.5">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-500"></i> Tentang
+                        </a>
+                        <a href="#skills" class="hover:text-emerald-400 transition flex items-center gap-1.5">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-500"></i> Keahlian
+                        </a>
+                        <a href="#projects" class="hover:text-sky-400 transition flex items-center gap-1.5">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-500"></i> Project
+                        </a>
+                        <a href="#contact" class="hover:text-purple-400 transition flex items-center gap-1.5">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 text-slate-500"></i> Kontak
+                        </a>
+                    </div>
+                </div>
+
+                <!-- School Info -->
+                <div class="md:col-span-3">
+                    <h4 class="font-display font-bold text-base text-white mb-4">Instansi Pendidikan</h4>
+                    <p class="text-slate-400 text-sm">
+                        SMK CYBER MEDIA<br />
+                        Jurusan: MPLB (Manajemen Perkantoran dan Layanan Bisnis)
+                    </p>
+                </div>
+            </div>
+
+            <!-- Heart Watermark Footer Note -->
+            <div class="pt-8 text-center">
+                <p class="text-sm font-semibold text-slate-400 flex items-center justify-center gap-2">
+                    <span>dibuat dengan</span>
+                    <i data-lucide="heart" class="w-5 h-5 text-rose-500 fill-rose-500 animate-heartbeat"></i>
+                    <span>oleh <strong class="text-white">almira</strong></span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DETAIL PROJECT (Pop Up Interaktif) -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-500">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl rainbow-bg flex items-center justify-center text-slate-900 font-bold mb-4">
+                <i data-lucide="file-check-2" class="w-6 h-6"></i>
+            </div>
+            <h3 id="modalTitle" class="font-display font-bold text-xl text-slate-900 mb-2"></h3>
+            <p id="modalDesc" class="text-slate-600 text-sm leading-relaxed mb-6"></p>
+            <button onclick="closeProjectModal()" class="w-full py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition text-sm">Tutup Rincian</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Mobile Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Interactive Project Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-slate-900', 'text-white', 'shadow-md');
+                    b.classList.add('bg-slate-100', 'text-slate-600');
+                });
+                btn.classList.add('bg-slate-900', 'text-white', 'shadow-md');
+                btn.classList.remove('bg-slate-100', 'text-slate-600');
+
+                const filter = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Modal Logic
+        function openProjectModal(title, description) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = description;
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Contact Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const successBox = document.getElementById('formSuccess');
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Mengirim...</span>`;
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Kirim Pesan Sekarang</span><i data-lucide="send" class="w-4 h-4 text-pink-600"></i>`;
+                lucide.createIcons();
+                successBox.classList.remove('hidden');
+                document.getElementById('contactForm').reset();
+
+                setTimeout(() => {
+                    successBox.classList.add('hidden');
+                }, 5000);
+            }, 1000);
+        }
+
+        // Typing Speed Test Feature Script
+        const targetText = "Manajemen Perkantoran dan Layanan Bisnis SMK Cyber Media Jakarta.";
+        const typingInput = document.getElementById('typingInput');
+        const wpmDisplay = document.getElementById('wpmDisplay');
+        const accuracyDisplay = document.getElementById('accuracyDisplay');
+        const resetTyping = document.getElementById('resetTyping');
+
+        let startTime = null;
+
+        typingInput.addEventListener('input', () => {
+            const val = typingInput.value;
+
+            if (!startTime && val.length > 0) {
+                startTime = new Date();
+            }
+
+            if (val.length > 0 && startTime) {
+                const elapsedMinutes = (new Date() - startTime) / 60000;
+                const wordsTyped = val.trim().split(/\s+/).length;
+                const wpm = Math.round(wordsTyped / (elapsedMinutes || 1/60));
+                wpmDisplay.innerText = isNaN(wpm) ? 0 : wpm;
+
+                // Accuracy calculation
+                let correctChars = 0;
+                for (let i = 0; i < val.length; i++) {
+                    if (val[i] === targetText[i]) {
+                        correctChars++;
+                    }
+                }
+                const accuracy = Math.round((correctChars / val.length) * 100);
+                accuracyDisplay.innerText = (isNaN(accuracy) ? 100 : accuracy) + '%';
+            }
+        });
+
+        resetTyping.addEventListener('click', () => {
+            typingInput.value = '';
+            wpmDisplay.innerText = '0';
+            accuracyDisplay.innerText = '100%';
+            startTime = null;
+        });
+    </script>
+</body>
+</html>
